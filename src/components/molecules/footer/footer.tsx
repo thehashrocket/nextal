@@ -4,7 +4,7 @@ const Footer = (): JSX.Element => {
   return (
     <footer className={styles.footer}>
       <a className={styles.link} href="https://github.com/jvidalv">
-        Josep Vidal @ {new Date().getFullYear()}
+        {new Date().getFullYear()} Witness to Love. All Rights Reserved.
       </a>
     </footer>
   );

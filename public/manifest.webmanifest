@@ -1,6 +1,6 @@
 {
-  "short_name": "Nextal",
-  "name": "Starter template for Next with TypeScript. Supports Tailwind with CSS-Modules. Jest and @react/testing-library configured and ready to go. Also ESLint, Prettier, Husky, Commit-lint and Atomic Design for components.",
+  "short_name": "wtl-parish-app",
+  "name": "Catholic Marriage Mentoring and Prep for Couples - Witness to Love",
   "icons": [
     {
       "src": "favicon.ico",
