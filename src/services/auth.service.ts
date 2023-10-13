@@ -12,9 +12,6 @@ export class AuthService {
   }
 
   login = (username: string, password: string) => {
-    console.log("login");
-    console.log("username", username);
-    console.log("password", password);
     return this.instance
       .post("users/sign_in", {
         user: {
@@ -25,34 +22,35 @@ export class AuthService {
       .then((res) => {
         return {
           username: res.data.user.email,
+          client: res.headers.client,
+          uid: res.headers.uid,
           id: res.data.user.id,
-          accessToken: res.data.user.tokens.token,
-          expiredAt: res.data.user.tokens.expiry,
+          accessToken: res.headers["access-token"],
         };
       });
   };
 
-  getMe = (userId: string) => {
-    return this.instance
-      .get(`users/${userId}`, {
-        headers: getAuthorizationHeader(),
-      })
-      .then((res) => {
-        return res.data;
-      });
-  };
+  // getMe = (userId: string) => {
+  //   return this.instance
+  //     .get(`users/${userId}`, {
+  //       headers: getAuthorizationHeader(),
+  //     })
+  //     .then((res) => {
+  //       return res.data;
+  //     });
+  // };
 
-  uploadAvatar = (userId: string, newAvatar: File) => {
-    const formData = new FormData();
-    formData.append("file", newAvatar);
-    return this.instance
-      .post(`/users/${userId}/upload`, formData, {
-        headers: getAuthorizationHeader(),
-      })
-      .then((res) => {
-        return {
-          newAvatar: res.data.data.url,
-        };
-      });
-  };
+  // uploadAvatar = (userId: string, newAvatar: File) => {
+  //   const formData = new FormData();
+  //   formData.append("file", newAvatar);
+  //   return this.instance
+  //     .post(`/users/${userId}/upload`, formData, {
+  //       headers: getAuthorizationHeader(),
+  //     })
+  //     .then((res) => {
+  //       return {
+  //         newAvatar: res.data.data.url,
+  //       };
+  //     });
+  // };
 }

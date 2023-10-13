@@ -1,7 +1,3 @@
-.layoutContainer {
-  @apply container mx-auto px-4 sm:px-6 lg:px-8;
-}
-
 .bodyClass {
   @apply flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-900;
 }

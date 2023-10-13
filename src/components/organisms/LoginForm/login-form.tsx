@@ -41,36 +41,6 @@ export default function LoginForm() {
             .catch((err) => {
               console.log(err);
             });
-          // Alert the input values of the form that we filled
-          // alert(JSON.stringify(values));
-          // Send a POST request to our API endpoint
-          // fetch('/api/login', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          //   body: JSON.stringify({ email: values.email, password: values.password }),
-          // })
-          //   .then((res) => {
-          //     if (res.ok) {
-          //       return res.json();
-          //     } else {
-          //       throw new Error('Something went wrong');
-          //     }
-          //   })
-          //   .then((json) => {
-          //     console.log('res', json);
-          //     setMessage(json.message);
-          //     setSubmitted(true);
-          //     // // store the user in localStorage.
-          //     localStorage.setItem('user', JSON.stringify(json.user));
-          //     // Store the last token in the User object in localStorage.
-          //     localStorage.setItem('token', JSON.stringify(json.user.tokens));
-
-          //   })
-          //   .catch((err) => {
-          //     console.log(err);
-          //   })
         }}
       >
         {({

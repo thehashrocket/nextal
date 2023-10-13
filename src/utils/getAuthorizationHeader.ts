@@ -1,9 +1,16 @@
 import Cookies from "js-cookie";
+import { getCookie } from "cookies-next";
 
-export function getAuthorizationHeader() {
-  const currentUser = Cookies.get("currentUser");
+// expects to be passed a cookie
+export function getAuthorizationHeader(cookie: string) {
+  console.log("cookie", cookie);
+  console.log(cookie, JSON.parse(cookie.toString() || ""));
+  // cookie contains a json string with the user info
+  // contains client, uid, and accessToken
 
   return {
-    Authorization: `Bearer ${JSON.parse(currentUser || "")?.accessToken || ""}`,
+    client: JSON.parse(cookie || "").client,
+    uid: JSON.parse(cookie || "").uid,
+    "access-token": JSON.parse(cookie || "").accessToken,
   };
 }

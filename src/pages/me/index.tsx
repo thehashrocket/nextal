@@ -8,7 +8,7 @@ import Button from "@/components/atoms/button";
 
 const Me: NextPage = () => {
   const [editMode, setEditMode] = useState(false);
-  const { user: currentUser, refetchUser } = useCurrentUser();
+  const { user: currentUser } = useCurrentUser();
   const { logout } = useLogout();
   const router = useRouter();
 
@@ -29,7 +29,8 @@ const Me: NextPage = () => {
         )}
         <Button
           onClick={async () => {
-            const response = await fetch("/api/users/me");
+            // const response = await fetch('/api/users/me');
+            const response = await fetch("/api/users/course_accesses");
             const data = await response.json();
             console.log(data);
           }}

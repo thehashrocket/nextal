@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { getCookie } from "cookies-next";
-import { getAuthorizationHeader } from "../../../utils/getAuthorizationHeader";
+import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -18,12 +18,15 @@ export default async function handler(req, res) {
 
       console.log("here2", headers);
       // Send request to the external API
-      const response = await axios.get(`${process.env.API_URL}users/me`, {
-        headers: headers,
-      });
+      const response = await axios.get(
+        `${process.env.API_URL}users/1/course_accesses`,
+        {
+          headers: headers,
+        }
+      );
       console.log("response", response);
 
-      const data = await response.data;
+      const data = await response.data.my_courses.data;
 
       // Return the response from the external API
       return res.status(response.status).json(data);
