@@ -3,30 +3,8 @@ import axios from "axios";
 import BasicCard from "@/components/molecules/basic-card";
 import CourseCard from "@/components/molecules/course-card";
 import styles from "./courses.module.css";
+import { CourseAccess } from "src/types/course_access";
 
-interface Course {
-  id: number;
-  status: string;
-  course_user_type: string;
-  course_title: string;
-}
-interface CourseAccess {
-  id: number;
-  attributes: CourseAccessAttributes;
-  userId: number;
-  created_at: string;
-  updated_at: string;
-}
-
-interface CourseAccessAttributes {
-  id: number;
-  archived: boolean;
-  course: Course;
-  course_license_id: number;
-  lesson_count: number;
-  percent_complete: number;
-  seats: number;
-}
 const CoursesPage = () => {
   const [courseAccesses, setCourseAccesses] = useState<CourseAccess[]>([]);
 
@@ -36,7 +14,6 @@ const CoursesPage = () => {
         const response = await axios.get<CourseAccess[]>(
           "/api/users/course_accesses"
         );
-        console.log("response.data", response.data);
         setCourseAccesses(response.data);
       } catch (error) {
         console.error(error);

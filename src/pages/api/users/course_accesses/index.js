@@ -3,20 +3,17 @@ import Cookies from "js-cookie";
 import { getCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
 
+
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const cookie = getCookie("currentUser", { req, res });
-      console.log("cookie", cookie);
 
       if (!cookie) {
         return res.status(400).json({ error: "You must be logged in." });
       }
 
       const headers = getAuthorizationHeader(cookie);
-      console.log("headers", headers);
-
-      console.log("here2", headers);
       // Send request to the external API
       const response = await axios.get(
         `${process.env.API_URL}users/1/course_accesses`,
@@ -24,7 +21,6 @@ export default async function handler(req, res) {
           headers: headers,
         }
       );
-      console.log("response", response);
 
       const data = await response.data.my_courses.data;
 
@@ -32,7 +28,6 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     } catch (error) {
       if (error.response) {
-        console.log("error.response", error.response);
         // If the external API returned an error, we'll capture its response here
         return res.status(error.response.status).json(error.response.data);
       }

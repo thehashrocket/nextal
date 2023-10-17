@@ -3,6 +3,11 @@ import Link from "next/link";
 import Head from "next/head";
 import Button from "@/components/atoms/button";
 import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 import styles from "./index.module.css";
 

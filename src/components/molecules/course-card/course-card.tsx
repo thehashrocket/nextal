@@ -1,5 +1,7 @@
 import React from "react";
-import Button from "@/components/atoms/button";
+import { useRouter } from "next/router";
+import Button from '@mui/material/Button';
+import LinearProgress from '@mui/material/LinearProgress';
 import ProgressBar from "@/components/atoms/progress-bar";
 import styles from "./course-card.module.css";
 
@@ -16,6 +18,9 @@ const CourseCard: React.FC<CourseCardProps> = ({
   percent_complete,
   course_id,
 }) => {
+
+  const router = useRouter();
+
   return (
     <div className={styles.card}>
       <div className={styles.innerWrapper}>
@@ -23,17 +28,21 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <div className={styles.secondRow}>
           <p>{lessons} Lessons</p>
           <Button
+            variant="contained"
             onClick={async () => {
               // const response = await fetch('/api/users/me');
-              const response = await fetch("/api/users/course_accesses");
-              const data = await response.json();
-              console.log(data);
+              // const response = await fetch(`/api/users/course_accesses/${course_id}`);
+              // const data = await response.json();
+              // console.log(data);
+              router.push(`/courses/${course_id}`);
             }}
           >
             Continue
           </Button>
         </div>
-        <ProgressBar progressPercent={percent_complete} />
+        <LinearProgress
+          variant="determinate"
+          value={percent_complete} />
       </div>
     </div>
   );
