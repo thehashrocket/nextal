@@ -4,6 +4,7 @@ import BasicCard from "@/components/molecules/basic-card";
 import CourseCard from "@/components/molecules/course-card";
 import styles from "./courses.module.css";
 import { CourseAccess } from "src/types/course_access";
+import { updateCookie } from "src/utils/updateCookie";
 
 const CoursesPage = () => {
   const [courseAccesses, setCourseAccesses] = useState<CourseAccess[]>([]);
@@ -11,10 +12,11 @@ const CoursesPage = () => {
   useEffect(() => {
     const fetchCourseAccesses = async () => {
       try {
-        const response = await axios.get<CourseAccess[]>(
+        const response = await axios.get(
           "/api/users/course_accesses"
         );
-        setCourseAccesses(response.data);
+        setCourseAccesses(response.data.data);
+        updateCookie('test', response.data.headers);
       } catch (error) {
         console.error(error);
       }

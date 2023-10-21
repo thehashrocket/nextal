@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { getCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
-
+import { updateCookie } from '../../../../utils/updateCookie';
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -23,9 +23,16 @@ export default async function handler(req, res) {
       );
 
       const data = await response.data.my_courses.data;
+      const responseHeaders = {
+        client: response.headers.client,
+        expiry: response.headers.expiry,
+        accessToken: response.headers["access-token"],
+        uid: response.headers.uid,
+        username: response.headers.uid
+      }
 
       // Return the response from the external API
-      return res.status(response.status).json(data);
+      return res.status(response.status).json({ data: data, headers: responseHeaders }).headers(responseHeaders);
     } catch (error) {
       if (error.response) {
         // If the external API returned an error, we'll capture its response here

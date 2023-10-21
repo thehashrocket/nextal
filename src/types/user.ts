@@ -3,4 +3,6 @@ export type User = {
   accessToken: string;
   avatar?: string;
   id: string;
+  client: string;
+  uid: string;
 };

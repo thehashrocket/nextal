@@ -5,6 +5,7 @@ import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import { useLogout } from "@/hooks/auth/useLogout";
 import Head from "next/head";
 import Button from "@/components/atoms/button";
+import { updateCookie } from "src/utils/updateCookie";
 
 const Me: NextPage = () => {
   const [editMode, setEditMode] = useState(false);
@@ -32,7 +33,7 @@ const Me: NextPage = () => {
             // const response = await fetch('/api/users/me');
             const response = await fetch("/api/users/course_accesses");
             const data = await response.json();
-            console.log(data);
+            updateCookie('test', data.headers);
           }}
         >
           Hit the API endpoint

@@ -14,14 +14,14 @@ export default async function handler(req, res) {
       }
 
       const headers = getAuthorizationHeader(cookie);
-      console.log("headers", headers);
+      // console.log("headers", headers);
 
-      console.log("here2", headers);
+      // console.log("here2", headers);
       // Send request to the external API
       const response = await axios.get(`${process.env.API_URL}users/me`, {
         headers: headers,
       });
-      console.log("response", response);
+      // console.log("response", response);
 
       const data = await response.data;
 
