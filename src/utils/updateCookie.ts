@@ -4,8 +4,7 @@ import Cookies from "js-cookie";
 
 export function updateCookie(cookie: any, headers: any) {
     if (headers.accessToken) {
-        console.log("updateCookie: ", headers);
-            Cookies.set("currentUser", JSON.stringify(headers));
+        Cookies.set("currentUser", JSON.stringify(headers));
     }
 
     return {

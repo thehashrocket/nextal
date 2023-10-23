@@ -5,6 +5,8 @@ import CourseCard from "@/components/molecules/course-card";
 import styles from "./courses.module.css";
 import { CourseAccess } from "src/types/course_access";
 import { updateCookie } from "src/utils/updateCookie";
+import Container from "@mui/material/Container";
+import PageHeader from "@/components/organisms/PageHeader";
 
 const CoursesPage = () => {
   const [courseAccesses, setCourseAccesses] = useState<CourseAccess[]>([]);
@@ -26,8 +28,8 @@ const CoursesPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Courses Page</h1>
+    <Container>
+      <PageHeader headline="Courses" />
       <ul className={styles.gridList}>
         {courseAccesses.map((courseAccess) => (
           <li key={courseAccess.id}>
@@ -40,7 +42,7 @@ const CoursesPage = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 

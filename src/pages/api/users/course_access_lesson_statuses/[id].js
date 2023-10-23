@@ -23,7 +23,7 @@ export default async function handler(req, res) {
                 }
             );
 
-            const data = await response.data.course_access_lesson_status;
+            const data = await response.data.course_access_lesson_status.data;
             const responseHeaders = {
                 client: response.headers.client,
                 expiry: response.headers.expiry,
@@ -33,7 +33,11 @@ export default async function handler(req, res) {
             }
 
             // Return the response from the external API
-            return res.status(response.status).json({ data: data, headers: responseHeaders }).headers(responseHeaders);
+            return res.status(response.status).json({
+                data: data,
+                headers: responseHeaders,
+                included: response.data.course_access_lesson_status.included,
+            }).headers(responseHeaders);
         } catch (error) {
             if (error.response) {
                 // If the external API returned an error, we'll capture its response here

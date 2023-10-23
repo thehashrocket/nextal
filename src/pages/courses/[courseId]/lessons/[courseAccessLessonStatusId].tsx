@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
-import { LinearProgress, List } from '@mui/material';
+import { Container, LinearProgress, List, Typography } from '@mui/material';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link';
 import { CourseAccessLessonStatus } from 'src/types/course_access_lesson_status';
 import { Lesson } from 'src/types/lesson';
 import { updateCookie } from 'src/utils/updateCookie';
+import PageHeader from '@/components/organisms/PageHeader';
 interface CourseProps {
     id: string;
 }
@@ -23,9 +24,9 @@ export default function Lesson({ id }: CourseProps) {
         async function fetchCourse() {
             try {
                 const response = await axios.get(`/api/users/course_access_lesson_statuses/${params['courseAccessLessonStatusId']}`);
-                setCourseAccessLessonStatus(response.data.data.data.attributes);
+                setCourseAccessLessonStatus(response.data.data.attributes);
                 updateCookie('test', response.data.headers);
-                setLesson(response.data.data.included[0].attributes);
+                setLesson(response.data.included[0].attributes);
             } catch (error) {
                 console.error(error);
             }
@@ -35,15 +36,30 @@ export default function Lesson({ id }: CourseProps) {
     }, [id, params]);
 
     if (!courseAccessLessonStatus) {
-        console.log('courseAccessLessonStatus', courseAccessLessonStatus);
         return <div>Loading...</div>;
     }
 
     return (
-        <div>
-            <h1>{courseAccessLessonStatus.course_title}</h1>
-            <h3>{courseAccessLessonStatus.lesson.lesson_title}</h3>
+        <Container>
+            <PageHeader headline={courseAccessLessonStatus.course_title} />
+            <Typography variant="h5">{courseAccessLessonStatus.lesson.lesson_title}</Typography>
 
-        </div>
+            {/* if lesson.video_embed_code has a value, then load the Videp Player */}
+
+            {lesson.video_embed_code && (
+                <>
+                    <div dangerouslySetInnerHTML={{ __html: lesson.before_video_content.body }} style={{ marginTop: '16px' }} />
+                    <div dangerouslySetInnerHTML={{ __html: lesson.video_embed_code }} style={{ marginTop: '16px' }} />
+                    <div dangerouslySetInnerHTML={{ __html: lesson.after_video_content.body }} style={{ marginTop: '16px' }} />
+                </>
+            )}
+
+            {/* if lesson.video_embed_code is null, then load the lesson content */}
+
+            {!lesson.video_embed_code && (
+                <div dangerouslySetInnerHTML={{ __html: lesson.lesson_content.body }} style={{ marginTop: '16px' }} />
+            )}
+
+        </Container>
     );
 }

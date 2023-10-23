@@ -1,6 +1,9 @@
+import { VideoContent } from "./video_content";
+import { VideoEmbed } from "./video_embed";
+
 export type Lesson = {
-    after_video_content: string;
-    before_video_content: string;
+    after_video_content: VideoContent;
+    before_video_content: VideoContent;
     course_id: number;
     course_title: string;
     has_questionnaire: boolean;
@@ -9,7 +12,13 @@ export type Lesson = {
     lesson_order: number;
     lesson_title: string;
     lesson_version: number;
-    podcast_description: string;
+    podcast_description: {
+        body: string;
+        id: number;
+        name: string;
+        record_id: number;
+        record_type: string;
+    };
     podcast_link: string;
     podcast_title: string;
     pretty_release_date: string;
@@ -23,4 +32,5 @@ export type Lesson = {
         record_id: number;
         record_type: string;
     }
+    video_embeds: [VideoEmbed]
 }

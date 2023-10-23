@@ -11,6 +11,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import Check from '@mui/icons-material/Check';
 import { Lesson } from 'src/types/lesson';
 import { updateCookie } from 'src/utils/updateCookie';
+import Container from "@mui/material/Container";
+import PageHeader from '@/components/organisms/PageHeader';
 
 interface CourseProps {
     id: string;
@@ -40,8 +42,8 @@ export default function Course({ id }: CourseProps) {
     }
 
     return (
-        <div>
-            <h1>{courseAccess.course_title}</h1>
+        <Container>
+            <PageHeader headline={courseAccess.course_title} />
             <LinearProgress variant="determinate" value={courseAccess.course_progress} />
             <List>
                 {courseAccess.lessons.map((lesson) => (
@@ -55,6 +57,6 @@ export default function Course({ id }: CourseProps) {
                     </ListItem>
                 ))}
             </List>
-        </div>
+        </Container>
     );
 }
