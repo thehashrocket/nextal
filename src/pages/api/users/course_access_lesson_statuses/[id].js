@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import { getCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
 
@@ -32,12 +31,21 @@ export default async function handler(req, res) {
                 username: response.headers.uid
             }
 
+            const encodedHeaders = Object.entries(responseHeaders).reduce((acc, [key, value]) => {
+                acc[key] = encodeURIComponent(value);
+                return acc;
+            }, {});
+
+            const cookieValue = JSON.stringify(encodedHeaders);
+            if (response.headers["access-token"]) {
+                res.setHeader('Set-Cookie', `currentUser=${cookieValue}; Path=/; HttpOnly; SameSite=Lax;`);
+            }
+
             // Return the response from the external API
             return res.status(response.status).json({
                 data: data,
-                headers: responseHeaders,
                 included: response.data.course_access_lesson_status.included,
-            }).headers(responseHeaders);
+            });
         } catch (error) {
             if (error.response) {
                 // If the external API returned an error, we'll capture its response here

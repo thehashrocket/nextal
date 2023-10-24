@@ -18,7 +18,6 @@ const CoursesPage = () => {
           "/api/users/course_accesses"
         );
         setCourseAccesses(response.data.data);
-        updateCookie('test', response.data.headers);
       } catch (error) {
         console.error(error);
       }

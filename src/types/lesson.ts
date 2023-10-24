@@ -33,4 +33,5 @@ export type Lesson = {
         record_type: string;
     }
     video_embeds: [VideoEmbed]
+    video_url: string;
 }

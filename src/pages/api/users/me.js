@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../utils/getAuthorizationHeader";
 
 export default async function handler(req, res) {
@@ -14,14 +14,12 @@ export default async function handler(req, res) {
       }
 
       const headers = getAuthorizationHeader(cookie);
-      // console.log("headers", headers);
 
-      // console.log("here2", headers);
       // Send request to the external API
       const response = await axios.get(`${process.env.API_URL}users/me`, {
         headers: headers,
       });
-      // console.log("response", response);
+
 
       const data = await response.data;
 

@@ -28,7 +28,6 @@ export default function Course({ id }: CourseProps) {
             try {
                 const response = await axios.get(`/api/users/course_accesses/${params['courseId']}`);
                 setCourseAccess(response.data.data);
-                updateCookie('test', response.data.headers);
             } catch (error) {
                 console.error(error);
             }
