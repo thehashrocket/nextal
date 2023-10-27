@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import PageHeader from '@/components/organisms/PageHeader';
 
 interface Learner {
     id: number;
-    name: string;
-    courses: string[];
+    type: string;
+    attributes: {
+        name: string;
+        accept_terms: boolean;
+        parish_name: string;
+        role: string;
+        diocese_name: string;
+    };
 }
 
 const LearnersPage = () => {
@@ -14,30 +21,39 @@ const LearnersPage = () => {
         const fetchLearners = async () => {
             const response = await fetch('/api/users/learners');
             const data = await response.json();
-            setLearners(data);
+            setLearners(data.data);
+            console.log('data', data)
         };
         fetchLearners();
     }, []);
 
+    if (!learners) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Courses</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {learners.map((learner) => (
-                        <TableRow key={learner.id}>
-                            <TableCell>{learner.name}</TableCell>
-                            <TableCell>{learner.courses.join(', ')}</TableCell>
+        <Container>
+            <PageHeader headline="Learners You Have Invited" />
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Parish Name</TableCell>
+                            <TableCell>Courses</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {learners.map((learner) => (
+                            <TableRow key={learner.id}>
+                                <TableCell>{learner.attributes.name}</TableCell>
+                                <TableCell>{learner.attributes.parish_name}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Container>
     );
 };
 
