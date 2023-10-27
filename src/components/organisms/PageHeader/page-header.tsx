@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Button, Typography, Link } from '@mui/material';
 import { useRouter } from 'next/router'
 
 interface PageHeaderProps {
@@ -15,9 +15,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({ headline }) => {
 
     return (
         <Box display="flex" alignItems="center" mb={3}>
-            <Link onClick={handleBackClick} color="textSecondary" style={{ marginRight: '8px' }}>
+            <Button onClick={handleBackClick} color="success" style={{ marginRight: '8px' }}>
                 {'< Back'}
-            </Link>
+            </Button>
             <Typography variant="h4">{headline}</Typography>
         </Box>
     );

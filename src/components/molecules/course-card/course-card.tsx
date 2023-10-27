@@ -28,7 +28,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <div className={styles.secondRow}>
           <p>{lessons} Lessons</p>
           <Button
-            variant="contained"
+            variant="outlined"
             onClick={async () => {
               // const response = await fetch('/api/users/me');
               // const response = await fetch(`/api/users/course_accesses/${course_id}`);

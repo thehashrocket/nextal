@@ -11,7 +11,7 @@
 }
 
 .main {
-  @apply flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-0;
+  @apply flex flex-col w-full bg-white mb-0;
 }
 
 .innerMain {
