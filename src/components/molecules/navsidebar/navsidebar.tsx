@@ -11,7 +11,7 @@ const NavSideBar = (): JSX.Element => {
       <div className={styles.navsidebar}>
         <ul className={styles.navlist}>
           <li>
-            <Link href="#" className={styles.navlistAnchor}>
+            <Link href="/orders" className={styles.navlistAnchor}>
               <svg
                 className={styles.navlistSvg}
                 aria-hidden="true"

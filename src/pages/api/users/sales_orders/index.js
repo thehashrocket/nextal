@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
 
-// Returns a list of courses that belongs to the user to /courses
+// Returns a list of orders that belongs to the user to /orders
 export default async function handler(req, res) {
     if (req.method === "GET") {
         try {
@@ -15,14 +15,13 @@ export default async function handler(req, res) {
             const headers = getAuthorizationHeader(cookie);
             // Send request to the external API
             const response = await axios.get(
-                `${process.env.API_URL}users/1/learners`,
+                `${process.env.API_URL}users/1/customer_orders`,
                 {
                     headers: headers,
                 }
             );
 
-
-            const data = await response.data.learners.data;
+            const data = await response.data.sales_orders.data;
             const responseHeaders = {
                 client: response.headers.client,
                 expiry: response.headers.expiry,

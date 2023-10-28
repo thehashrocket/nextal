@@ -1,5 +1,5 @@
 .footer {
-  @apply flex justify-between items-center bg-blue-300 p-4;
+  @apply flex justify-between items-center bg-blue-300 p-4 sticky bottom-0;
 }
 
 :global(.dark) .link {

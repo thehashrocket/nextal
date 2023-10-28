@@ -4,8 +4,10 @@ export type Learner = {
     attributes: {
         name: string;
         accept_terms: boolean;
+        accepted_invitation: boolean;
         parish_name: string;
         role: string;
         diocese_name: string;
+        resend_invitation: boolean;
     };
 }

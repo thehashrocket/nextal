@@ -1,5 +1,5 @@
 .layout {
-  @apply flex h-screen bg-green-300;
+  @apply flex h-screen;
 }
 
 .innerLayout {
@@ -7,7 +7,7 @@
 }
 
 .bodyWrapper {
-  @apply flex h-full;
+  @apply flex h-full overflow-scroll;
 }
 
 .main {

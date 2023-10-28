@@ -1495,9 +1495,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-data-grid@npm:^6.16.3":
-  version: 6.16.3
-  resolution: "@mui/x-data-grid@npm:6.16.3"
+"@mui/x-data-grid@npm:^6.17.0":
+  version: 6.17.0
+  resolution: "@mui/x-data-grid@npm:6.17.0"
   dependencies:
     "@babel/runtime": "npm:^7.23.2"
     "@mui/utils": "npm:^5.14.14"
@@ -1509,7 +1509,7 @@ __metadata:
     "@mui/system": ^5.4.1
     react: ^17.0.0 || ^18.0.0
     react-dom: ^17.0.0 || ^18.0.0
-  checksum: b70475dd9ee929a5e493f75c43adadf3133efc79c8e6eaa9cea3a79c23568bc1fd3124cc6a52628b8dfe714e89d1091c8c9316f1f7b86b3ca605556d91169a9f
+  checksum: 35bf3495eaabae5717de36dd1676e355201af80cbe2b4d3d25b63051b93e78bb5a4b4e81f26048d38658a11483beb0a0fd4281f8ee543667ea63ec478e29c31b
   languageName: node
   linkType: hard
 
@@ -2187,7 +2187,7 @@ __metadata:
     "@heroicons/react": "npm:2.0.13"
     "@mui/icons-material": "npm:^5.14.14"
     "@mui/material": "npm:^5.14.13"
-    "@mui/x-data-grid": "npm:^6.16.3"
+    "@mui/x-data-grid": "npm:^6.17.0"
     "@tailwindcss/forms": "npm:0.5.3"
     "@tailwindcss/typography": "npm:0.5.9"
     "@testing-library/jest-dom": "npm:5.16.5"

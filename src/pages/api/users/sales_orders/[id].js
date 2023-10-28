@@ -2,7 +2,6 @@ import axios from "axios";
 import { getCookie } from "cookies-next";
 import { getAuthorizationHeader } from "../../../../utils/getAuthorizationHeader";
 
-// Returns a list of courses that belongs to the user to /courses
 export default async function handler(req, res) {
     if (req.method === "GET") {
         try {
@@ -13,16 +12,17 @@ export default async function handler(req, res) {
             }
 
             const headers = getAuthorizationHeader(cookie);
+
+            const { id } = req.query;
             // Send request to the external API
             const response = await axios.get(
-                `${process.env.API_URL}users/1/learners`,
+                `${process.env.API_URL}users/1/users/sales_orders/${id}`,
                 {
                     headers: headers,
                 }
             );
 
-
-            const data = await response.data.learners.data;
+            const data = await response.data.sales_order;
             const responseHeaders = {
                 client: response.headers.client,
                 expiry: response.headers.expiry,
@@ -30,6 +30,7 @@ export default async function handler(req, res) {
                 uid: response.headers.uid,
                 username: response.headers.uid
             }
+
 
             const encodedHeaders = Object.entries(responseHeaders).reduce((acc, [key, value]) => {
                 acc[key] = encodeURIComponent(value);
