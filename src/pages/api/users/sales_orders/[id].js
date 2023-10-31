@@ -16,13 +16,13 @@ export default async function handler(req, res) {
             const { id } = req.query;
             // Send request to the external API
             const response = await axios.get(
-                `${process.env.API_URL}users/1/users/sales_orders/${id}`,
+                `${process.env.API_URL}users/1/customer_orders/${id}`,
                 {
                     headers: headers,
                 }
             );
 
-            const data = await response.data.sales_order;
+            const data = await response.data;
             const responseHeaders = {
                 client: response.headers.client,
                 expiry: response.headers.expiry,
