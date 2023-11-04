@@ -44,7 +44,7 @@ export const OrdersPage = () => {
                 id: order.id,
                 web_order_number: order.attributes.web_order_number,
                 order_date: new Date(order.attributes.order_date).toLocaleDateString(),
-                order_total: order.attributes.order_total.toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
+                order_total: order.attributes.order_total,
                 status: order.attributes.status,
                 parish_name: order.attributes.parish_name,
                 name: order.attributes.name,

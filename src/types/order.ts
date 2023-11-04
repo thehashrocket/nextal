@@ -1,12 +1,18 @@
 export type Order = {
     id: number;
     attributes: {
-        web_order_number: string;
+        discount_total: number;
+        has_license: boolean;
+        name: string;
         order_date: string;
         order_total: number;
-        status: string;
         parish_name: string;
-        name: string;
-        has_license: boolean;
+        refund_total: number;
+        shipping_total: number;
+        status: string;
+        sub_total: number;
+        tax_total: number;
+        web_order_number: string;
+
     }
 }

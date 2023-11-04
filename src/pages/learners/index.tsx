@@ -112,7 +112,7 @@ const LearnersPage = () => {
                 slots={{
                     loadingOverlay: LinearProgress,
                 }}
-                loading={learners.length === 0}
+                loading={rows.length === 0}
                 initialState={{
                     sorting: {
                         sortModel: [{ field: 'name', sort: 'asc' }, { field: 'parish_name', sort: 'desc' }]
